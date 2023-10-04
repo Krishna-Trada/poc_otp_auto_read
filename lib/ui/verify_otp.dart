@@ -34,10 +34,11 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> with CodeAutoFill{
   }
 
   @override
-  void dispose() {
-    SmsAutoFill().unregisterListener();
-    print("unregisterListener");
+  Future<void> dispose() async {
     super.dispose();
+    await cancel();
+    await unregisterListener();
+    print("unregisterListener");
   }
 
   @override
