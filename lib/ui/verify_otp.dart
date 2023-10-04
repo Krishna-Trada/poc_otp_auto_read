@@ -47,6 +47,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> with CodeAutoFill{
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
@@ -55,7 +56,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> with CodeAutoFill{
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: InputBorder.none,
-                  hintText: "Enter Mobile Number",
+                  hintText: "Enter Otp",
                 ),
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(6),
