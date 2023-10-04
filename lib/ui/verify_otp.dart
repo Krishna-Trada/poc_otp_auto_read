@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
@@ -8,22 +9,26 @@ class VerifyOTPScreen extends StatefulWidget {
   State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
 }
 
-class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
+class _VerifyOTPScreenState extends State<VerifyOTPScreen> with CodeAutoFill{
   TextEditingController otpCtr = TextEditingController();
 
 
 
-  // @override
-  // void codeUpdated() {
-  //   print("Update code $code");
-  //   setState(() {
-  //     print("codeUpdated");
-  //   });
-  // }
+  @override
+  void codeUpdated() {
+    print("Update code $code");
+    if(mounted) {
+      setState(() {
+        otpCtr.text = code ?? '';
+        print("codeUpdated");
+      });
+    }
+  }
 
   @override
   void initState() {
-    SmsAutoFill().listenForCode;
+    // SmsAutoFill().listenForCode;
+    listenForCode();
     print("OTP listen Called");
     super.initState();
   }
@@ -45,9 +50,16 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Center(
-              child: PinFieldAutoFill(
+              child: TextField(
                 controller: otpCtr,
-                codeLength: 4,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Enter Mobile Number",
+                ),
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(6),
+                ],
               ),
             ),
             const SizedBox(
