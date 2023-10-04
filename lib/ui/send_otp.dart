@@ -62,7 +62,7 @@ class SendOTPScreen extends StatelessWidget {
     print('app signature id is : $appSignatureID');
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const VerifyOTPScreen()),
+      MaterialPageRoute(builder: (context) =>  VerifyOTPScreen(signatureId: appSignatureID,)),
     );
   }
 }

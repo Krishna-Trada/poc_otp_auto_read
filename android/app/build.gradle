@@ -53,12 +53,19 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
-
+    signingConfigs {
+        release {
+            storeFile file('poc_otp_auto_read.jks')
+            storePassword '12345678'
+            keyAlias 'poc_otp_auto_read'
+            keyPassword '12345678'
+        }
+    }
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
-  const VerifyOTPScreen({Key? key}) : super(key: key);
+  final String? signatureId;
+  const VerifyOTPScreen({Key? key, this.signatureId}) : super(key: key);
 
   @override
   State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
@@ -51,6 +52,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> with CodeAutoFill{
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(widget.signatureId ?? "", style: TextStyle(fontSize: 16),),
             Center(
               child: TextField(
                 controller: otpCtr,
